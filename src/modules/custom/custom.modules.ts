@@ -14,9 +14,7 @@ import { CustomController } from './custom.controller';
       dataSourceFactory: async () => customDataSource,
     }),
     TypeOrmModule.forFeature(
-      [
-        /* Your entities here */
-      ],
+      [],
       'customConnection'
     ),
   ],

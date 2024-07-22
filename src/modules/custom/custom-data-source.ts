@@ -25,7 +25,7 @@ export async function initializeCustomDataSource() {
       console.log('Custom Data Source has been initialized!');
     } catch (error) {
       console.error('Error during Custom Data Source initialization', error);
-      process.exit(1); // Exit the process with failure
+      process.exit(1);
     }
   }
   return customDataSource;
