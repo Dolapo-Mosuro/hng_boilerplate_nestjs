@@ -1,5 +1,7 @@
 import { Module, ValidationPipe } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { JobsModule } from './modules/jobs/job-listing.module';
+import { JwtModule } from '@nestjs/jwt';
 import { APP_PIPE } from '@nestjs/core';
 import serverConfig from '../config/server.config';
 import * as Joi from 'joi';
@@ -8,6 +10,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import dataSource from './database/data-source';
 import { SeedingModule } from './database/seeding/seeding.module';
 import HealthController from './health.controller';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 @Module({
   providers: [
@@ -51,6 +56,12 @@ import HealthController from './health.controller';
       }),
       dataSourceFactory: async () => dataSource,
     }),
+    JobsModule,
+    JwtModule.register({
+      secret: process.env.JWT_SECRET,
+      signOptions: { expiresIn: '1h' },
+    }),
+
     SeedingModule,
   ],
   controllers: [HealthController],

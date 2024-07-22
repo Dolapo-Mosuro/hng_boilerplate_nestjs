@@ -16,9 +16,11 @@ import * as bcrypt from 'bcrypt';
 import { Product } from './product.entity';
 import { Organisation } from './organisation.entity';
 import { Profile } from './profile.entity';
+import { JobListing } from 'src/modules/jobs/job-listing.entity';
 
 @Entity()
 export class User {
+  [x: string]: any;
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
@@ -62,6 +64,9 @@ export class User {
   @OneToOne(() => Profile, profile => profile.user, { cascade: true })
   @JoinColumn({ name: 'profile_id' })
   profile: Profile;
+
+  @OneToMany(() => JobListing, jobListing => jobListing.user)
+  jobListings: JobListing[];
 
   @BeforeInsert()
   async hashPassword() {
