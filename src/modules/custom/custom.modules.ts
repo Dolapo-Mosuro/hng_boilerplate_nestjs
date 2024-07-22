@@ -1,5 +1,3 @@
-// src/modules/custom/custom.module.ts
-
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import customDataSource, { initializeCustomDataSource } from './custom-data-source';

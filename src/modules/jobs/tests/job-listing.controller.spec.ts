@@ -1,8 +1,8 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { JobsController } from './job-listing.controller';
-import { JobsService } from './job-listing.service';
-import { AuthGuard } from '../../modules/auth/auth.guard';
-import { CreateJobListingDto } from './create-job-listing.dto';
+import { JobsController } from '../controllers/job-listing.controller';
+import { JobsService } from '../services/job-listing.service';
+import { AuthGuard } from '../../../modules/auth/auth.guard';
+import { CreateJobListingDto } from '../dtos/create-job-listing.dto';
 import { BadRequestException, InternalServerErrorException, UnauthorizedException } from '@nestjs/common';
 
 describe('JobsController', () => {

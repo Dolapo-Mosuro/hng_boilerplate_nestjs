@@ -16,7 +16,7 @@ import * as bcrypt from 'bcrypt';
 import { Product } from './product.entity';
 import { Organisation } from './organisation.entity';
 import { Profile } from './profile.entity';
-import { JobListing } from 'src/modules/jobs/job-listing.entity';
+import { JobListing } from 'src/modules/jobs/entities/job-listing.entity';
 
 @Entity()
 export class User {
