@@ -10,6 +10,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import dataSource from './database/data-source';
 import { SeedingModule } from './database/seeding/seeding.module';
 import HealthController from './health.controller';
+import customDataSource from './modules/custom/custom-data-source';
 import dotenv from 'dotenv';
 
 dotenv.config();
@@ -55,6 +56,13 @@ dotenv.config();
         ...dataSource.options,
       }),
       dataSourceFactory: async () => dataSource,
+    }),
+    TypeOrmModule.forRootAsync({
+      name: 'customconnection',
+      useFactory: async () => ({
+        ...customDataSource.options,
+      }),
+      dataSourceFactory: async () => customDataSource,
     }),
     JobsModule,
     JwtModule.register({
