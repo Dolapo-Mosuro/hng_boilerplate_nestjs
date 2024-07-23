@@ -1,3 +1,4 @@
+import * as dotenv from 'dotenv';
 import { Module, ValidationPipe } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { JobsModule } from './modules/jobs/job-listing.module';
@@ -10,8 +11,6 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import dataSource from './database/data-source';
 import { SeedingModule } from './database/seeding/seeding.module';
 import HealthController from './health.controller';
-import customDataSource from './modules/custom/custom-data-source';
-import dotenv from 'dotenv';
 
 dotenv.config();
 
@@ -38,7 +37,7 @@ dotenv.config();
        * To specify multiple .env files, set the envFilePath property.
        * If a variable is found in multiple files, the first one takes precedence.
        */
-      envFilePath: ['.env.development.local', `.env.${process.env.PROFILE}`],
+      envFilePath: ['.env.development.local', `.env.${process.env.NODE_ENV}`],
       isGlobal: true,
       load: [serverConfig],
       /**
@@ -56,13 +55,6 @@ dotenv.config();
         ...dataSource.options,
       }),
       dataSourceFactory: async () => dataSource,
-    }),
-    TypeOrmModule.forRootAsync({
-      name: 'customconnection',
-      useFactory: async () => ({
-        ...customDataSource.options,
-      }),
-      dataSourceFactory: async () => customDataSource,
     }),
     JobsModule,
     JwtModule.register({

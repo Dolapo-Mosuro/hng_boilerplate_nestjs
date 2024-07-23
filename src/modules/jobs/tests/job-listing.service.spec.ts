@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { JobsService } from '../services/job-listing.service';
 import { Repository } from 'typeorm';
-import { JobListing } from '../entities/job-listing.entity';
+import { JobListing } from '../../../entities/job-listing.entity';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { CreateJobListingDto } from '../dtos/create-job-listing.dto';
 import { InternalServerErrorException } from '@nestjs/common';
